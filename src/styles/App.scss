@@ -1,0 +1,151 @@
+$main-color: #288ee2;
+$secondary-color: #7cb9eb;
+$main-grey: #b9b9b9;
+$background-color: #282c34;
+$form-color: #fdfdfd;
+
+::-webkit-scrollbar-thumb {
+  background-color: $main-grey;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.App {
+  background-color: $background-color;
+  min-height: 100vh;
+  header {
+    background-color: $background-color;
+    height: 300px;
+    position: relative;
+    // min-height: 10vh;
+    h1 {
+      font-size: 80px;
+      font-weight: bold;
+      width: 400px;
+      line-height: 70px;
+      padding: 40px 0 0 30px;
+      margin: 0;
+      color: $main-color;
+    }
+
+    h2 {
+      font-size: calc(20px);
+      font-weight: bold;
+      width: 500px;
+      line-height: calc(19px);
+      padding: 15px 0 0 30px;
+      margin: 0;
+      color: $secondary-color;
+    }
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    .selector-parent-div {
+      display: flex;
+      justify-content: center;
+    }
+    .selector-parent-div > :first-child,
+    .selector-parent-div > :last-child {
+      width: 500px;
+      margin: 0 58px;
+    }
+    .MuiInputLabel-root.Mui-focused {
+      color: $secondary-color;
+    }
+    .network-selector {
+      float: left;
+      width: 230px;
+      font-family: "Anybody", cursive;
+      background-color: $background-color;
+      color: $secondary-color;
+    }
+    .wallets-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .inputs {
+        display: flex;
+        justify-content: center;
+        .input-div {
+          margin: 0 20px;
+          padding: 20px 0;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          label {
+            color: $secondary-color;
+            font-size: 20px;
+            margin-bottom: 10px;
+          }
+          input {
+            width: 500px;
+            height: 40px;
+            padding: 8px 15px;
+            font-size: 22px;
+            line-height: 30px;
+            border-radius: 7px;
+            border: solid transparent;
+            background-color: $form-color;
+          }
+          span {
+            font-size: 14px;
+            font-weight: 600;
+            position: absolute;
+            left: 2px;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            color: $main-color;
+            float: left;
+          }
+        }
+      }
+      .button-div {
+        align-self: center;
+        button {
+          padding: 8px 15px;
+          position: relative;
+          height: 50px;
+          font-size: 18px;
+          font-weight: bold;
+          width: 200px;
+          margin: 10px 15px;
+          border-radius: 55px;
+          background-color: $form-color;
+          border: solid transparent;
+          transition: all 400ms;
+          cursor: pointer;
+          &:hover {
+            transition: all 400ms;
+            background-color: $secondary-color;
+          }
+          &:disabled {
+            transition: none;
+            background-color: $main-grey;
+            cursor: initial;
+          }
+        }
+      }
+    }
+
+    .transactions-table {
+      margin-top: 15px;
+      width: 90%;
+      height: 500px;
+      background-color: white;
+      border-radius: 7px;
+      transition: all 400ms;
+    }
+  }
+}
