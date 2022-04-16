@@ -8,7 +8,6 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { NetworkData } from "./models/NetworkData";
-import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import "./styles/App.scss";
 
 const networks: NetworkData[] = [

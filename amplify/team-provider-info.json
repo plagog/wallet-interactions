@@ -10,6 +10,14 @@
       "StackName": "amplify-walletinteractions-dev-205942",
       "StackId": "arn:aws:cloudformation:us-east-2:241504684625:stack/amplify-walletinteractions-dev-205942/afc58fa0-b47b-11ec-9d0f-0a257027af28",
       "AmplifyAppId": "d2nwbus02rqirl"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2nwbus02rqirl",
+          "type": "manual"
+        }
+      }
     }
   }
 }
