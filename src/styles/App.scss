@@ -149,3 +149,8 @@ $form-color: #fdfdfd;
     }
   }
 }
+
+.MuiDataGrid-row {
+  cursor: pointer;
+  transition: all 800ms;
+}

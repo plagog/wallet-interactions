@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
-import { ethers, utils } from "ethers";
+import { utils } from "ethers";
 import { WalletFormData } from "../models/WalletFormData";
 import { TransactionData } from "../models/TransactionData";
 import { NetworkData } from "../models/NetworkData";
@@ -24,7 +24,6 @@ const WalletsForm = ({ setTableData, network }: InputFieldProps) => {
     data: WalletFormData
   ) => {
     if (data.walletAddress1 === data.walletAddress2) return;
-    console.log("heelo");
     setLoading(true);
     let history1: any[] = await getHistory(data.walletAddress1);
     let history2: any[] = await getHistory(data.walletAddress2);
@@ -47,7 +46,10 @@ const WalletsForm = ({ setTableData, network }: InputFieldProps) => {
   ): TransactionData[] => {
     let map = new Map();
     history1.forEach((el) => {
-      if (el.from === walletAddress2 || el.to === walletAddress2) {
+      if (
+        el.from.toLowerCase() === walletAddress2.toLowerCase() ||
+        el.to.toLowerCase() === walletAddress2.toLowerCase()
+      ) {
         let toSet: TransactionData = {
           id: el.hash,
           hash: `${el.hash.substring(0, 10)}...${el.hash.substring(
@@ -57,16 +59,22 @@ const WalletsForm = ({ setTableData, network }: InputFieldProps) => {
             el.from.length - 4
           )}`,
           to: `${el.to.substring(0, 6)}...${el.to.substring(el.to.length - 4)}`,
-          timestamp: new Date(el.timestamp * 1000).toLocaleString("en-US"),
+          timestamp: new Date(Number(el.timeStamp) * 1000).toLocaleString(
+            "en-US"
+          ),
           value:
             Math.round(Number(utils.formatUnits(el.value, 18)) * 10000) / 10000,
+          network: network,
+          networkName: network.shortName,
         };
         map.set(el.hash, toSet);
       }
     });
     history2.forEach((el) => {
-      console.log(el.timestamp);
-      if (el.from === walletAddress1 || el.to === walletAddress1) {
+      if (
+        el.from.toLowerCase() === walletAddress1.toLowerCase() ||
+        el.to.toLowerCase() === walletAddress1.toLowerCase()
+      ) {
         let toSet: TransactionData = {
           id: el.hash,
           hash: `${el.hash.substring(0, 10)}...${el.hash.substring(
@@ -76,25 +84,38 @@ const WalletsForm = ({ setTableData, network }: InputFieldProps) => {
             el.from.length - 4
           )}`,
           to: `${el.to.substring(0, 6)}...${el.to.substring(el.to.length - 4)}`,
-          timestamp: new Date(el.timestamp * 1000).toLocaleString("en-US"),
+          timestamp: new Date(Number(el.timeStamp) * 1000).toLocaleString(
+            "en-US"
+          ),
           value:
             Math.round(Number(utils.formatUnits(el.value, 18)) * 10000) / 10000,
+          network: network,
+          networkName: network.shortName
         };
         map.set(el.hash, toSet);
       }
     });
-    console.log(map);
     return Array.from(map.values());
   };
 
   const getHistory = async (address: string): Promise<any[]> => {
     let history: any[] = [];
+    // try {
+    //   let provider = new ethers.providers.EtherscanProvider(
+    //     "mainnet",
+    //     process.env.REACT_APP_ETHERSCAN_API_KEY
+    //   );
+    //   history = await provider.getHistory(address);
+    // } catch (error) {
+    //   setLoading(false);
+    // }
     try {
-      let provider = new ethers.providers.EtherscanProvider(
-        "mainnet",
-        process.env.REACT_APP_ETHERSCAN_API_KEY
+      const response = await fetch(
+        `https://api.${network.explorerDomain}/api?module=account&action=txlist&address=${address}&startblock=0&endblock=999999999&sort=desc&apikey=${network.apiKey}`,
+        { method: "GET" }
       );
-      history = await provider.getHistory(address);
+      const data = await response.json();
+      history = await data.result;
     } catch (error) {
       setLoading(false);
     }

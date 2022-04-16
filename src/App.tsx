@@ -8,29 +8,33 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { NetworkData } from "./models/NetworkData";
+import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import "./styles/App.scss";
 
 const networks: NetworkData[] = [
   {
     name: "Ethereum",
     shortName: "ETH",
+    explorerDomain: "etherscan.io",
+    apiKey: process.env.REACT_APP_ETHERSCAN_API_KEY,
   },
   {
     name: "Binance Smart Chain",
     shortName: "BSC",
+    explorerDomain: "bscscan.com",
+    apiKey: process.env.REACT_APP_BSCSCAN_API_KEY,
   },
   {
     name: "Polygon",
     shortName: "Matic",
+    explorerDomain: "polygonscan.com",
+    apiKey: process.env.REACT_APP_POLYGONSCAN_API_KEY,
   },
 ];
 
 function App() {
   const [tableData, setTableData] = useState<TransactionData[] | null>(null);
-  const [network, setNetwork] = useState<NetworkData>({
-    name: "Ethereum",
-    shortName: "ETH",
-  });
+  const [network, setNetwork] = useState<NetworkData>(networks[0]);
 
   const handleChange = (event: SelectChangeEvent) => {
     let tempNetwork: NetworkData | undefined = networks.find((el) => {
