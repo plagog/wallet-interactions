@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+
+Sitemap: https://wallettxexplorer.com/sitemap.xml
+Sitemap: https://www.wallettxexplorer.com/sitemap.xml
