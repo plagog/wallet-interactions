@@ -14,9 +14,14 @@ body {
 }
 
 .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(255, 255, 255, 0.497) !important;
+  border-color: rgb(72, 140, 220) !important;
 }
 
 .MuiInputLabel-root {
-  color: rgba(255, 255, 255, 0.497) !important;
+  color: rgb(72, 140, 220) !important;
+}
+
+.button-div > button{
+
+  color: black;
 }
