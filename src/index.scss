@@ -12,3 +12,11 @@ body {
 * {
   font-family: 'Anybody', cursive;
 }
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.497) !important;
+}
+
+.MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.497) !important;
+}
