@@ -45,10 +45,10 @@ function App() {
   return (
     <>
       <div className="App">
-        <header>
+        <div className="header">
           <h1>Wallet Transaction Explorer</h1>
           <h2>Explore transactions between 2 ethereum wallets</h2>
-        </header>
+        </div>
         <div className="main">
           <div className="selector-parent-div">
             <div className="selector-div">
