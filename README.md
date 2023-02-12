@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ### Live Url
 
-https://wallettxexplorer.com
+https://walletexplorer.vercel.app
 
 # How to setup & use Wallet Transactions Explorer
 
